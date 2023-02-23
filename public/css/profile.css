@@ -1,0 +1,21 @@
+
+.profile_heading {
+    font-size: 35px;
+    margin-bottom: 20px;
+    color: rgb(87, 60, 112);
+    font-weight: 600;
+}
+.edit_profile{
+    margin-top: 20px;
+    
+}
+
+.edit_profile a{
+    
+    text-decoration: none;
+    font-weight: 600;
+    color: rgb(87, 60, 112);
+}
+.edit_profile a:hover{
+    text-decoration: underline;
+}

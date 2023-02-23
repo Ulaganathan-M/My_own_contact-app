@@ -1,0 +1,18 @@
+
+
+.contact_book{
+    margin: 40px 0px;
+}
+.contact_book a {
+    padding: 10px;
+    background: none;
+    background-color:  rgb(88, 51, 122);
+    border: none;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-decoration: none;
+}
