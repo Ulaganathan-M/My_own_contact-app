@@ -6,6 +6,8 @@ const User = require('../models/usermodel')
 const jwt = require('jsonwebtoken')
 const { promisify } = require('util')
 const fs= require('fs')
+const hbs = require('hbs')
+
 
 
 
@@ -201,3 +203,51 @@ exports.edit = asyncHandler(async(req,res,next) => {
   
     
     })
+
+    exports.addContact =  asyncHandler(async(req,res,next) => {
+        try {
+            const { name, number} = req.body;
+            if( !name || !number){
+                res.status(400)
+                return res.render('addContact',{msg:"All fields are mandatory..", msg_type:"error"})
+            }
+            if(req.cookies.usercookie) {
+                try{
+                    const decode= await promisify(jwt.verify)(
+                        req.cookies.usercookie,
+                        process.env.JWT_SECRET)
+                    
+                    const useremail = decode.id
+                    const dbuser = await User.findOne({ email:useremail })
+
+                    dbuser.contacts.push({name,number})
+                    await dbuser.save();
+                    // res.status(200).redirect("/addContact")
+                    res.locals.user = dbuser;
+                    res.render('addContact',{user: dbuser, msg:"Contact Updated.", msg_type:"success"})
+                    // res.render('addContact',{msg:"Contact Updated.", msg_type:"success"})
+
+
+                }catch(error){
+                    console.log(error);
+                    
+                }
+            }
+        }catch(err){
+            console.log(err);
+        }
+
+    })
+
+    exports.deleteContact = async (req, res) => {
+        try {
+          const { contactId } = req.params;
+          const dbuser = await User.findOne({ email: req.result.email });
+          dbuser.contacts.pull(contactId);
+          await dbuser.save();
+          res.status(200).redirect("/contact")
+          
+        } catch (error) {
+          console.error(error);
+        }
+      };

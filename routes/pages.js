@@ -45,4 +45,20 @@ router.get("/home",isLoggedIn,(req,res) => {
     
 })
 
+router.get("/contact",isLoggedIn,(req,res)=> {
+    if (req.result){
+        res.render("contact", {user: req.result})
+    }else {
+        res.redirect("/login")
+    }  
+})
+
+router.get("/addContact",isLoggedIn,(req,res)=> {
+    if (req.result){
+        res.render("addContact", {user: req.result})
+    }else {
+        res.redirect("/login")
+    }  
+})
+
 module.exports = router;

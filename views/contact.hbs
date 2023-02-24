@@ -6,17 +6,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Book</title>
     <link rel="stylesheet" href="/css/style.css">
-    {{!-- <link rel="stylesheet" href="/css/home.css"> --}}
+     <link rel="stylesheet" href="/css/contact.css">
 </head>
 <body>
 
     {{> navbar}}
+    <div class="whole_container">
+         <div class="contact-container">
+            <div class="heading">
+                <div class="contact">
+                    Contact Details
+                </div>
+                <div class="add_contact">
+                    <a href="addContact">Add Contact</a>
+                </div>
+            </div>
+            <div class="user_details">
+                <div class="user_name">
+                    {{user.name}}
+                </div>
+                <div class="user_email">
+                    {{user.email}}
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Contact Name</th>
+                        <th>Number</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    
+                </thead>
+                <tbody>
+                   {{#each user}}
+                    {{#each this.contacts}}
+                    {{!-- {{#each user.contacts}} --}}
+                    
+                     
+                    <tr>
+                        <td>{{add @index 1}}</td>
+                        <td>{{name}}</td>
+                        <td>{{number}}</td>
+                        <th><a href="">Edit</a></th>
+                        <th>
+                            <form action="/auth/contacts/{{_id}}" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </th>
+                    </tr>
+                    {{/each}}
+                    {{/each}}
+                    
+                </tbody>
+            </table>
+            
     
-    <div class="container-fluid">
-        <h2>Home Page</h2>
-        <br>
-        <h1>Contact </h1>
-    
+        </div>
+
     </div>
     
     

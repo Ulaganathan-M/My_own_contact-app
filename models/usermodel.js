@@ -1,4 +1,5 @@
 
+const contactSchema = require('./contactmodel')
 
 const mongoose = require('mongoose')
 
@@ -18,7 +19,8 @@ const userSchema = mongoose.Schema({
     },
     avatar: {
         type: String
-    }
+    },
+    contacts: [contactSchema]
 }, {
     timestamps: true
 })

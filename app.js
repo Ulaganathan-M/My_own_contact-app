@@ -24,6 +24,10 @@ app.use(express.static(location))
 
 app.set('view engine',"hbs");
 
+hbs.registerHelper('add', function(str1, str2) {
+    return str1 + str2;
+  });
+
 const partialPath = path.join(__dirname, "./views/partials")
 hbs.registerPartials(partialPath)
 
