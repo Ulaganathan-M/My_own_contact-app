@@ -50,7 +50,7 @@
                         <td>{{add @index 1}}</td>
                         <td>{{name}}</td>
                         <td>{{number}}</td>
-                        <th><a href="">Edit</a></th>
+                        <th><a href="/editContact/{{_id}}">Edit</a></th>
                         <th>
                             <form action="/auth/contacts/{{_id}}" method="POST">
                             <input type="hidden" name="_method" value="DELETE">

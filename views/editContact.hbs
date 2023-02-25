@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Contact</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/editContact.css">
+
+
+</head>
+<body>
+
+    {{> navbar}}
+
+    <div class="container">
+        <div class="text">Edit Contact</div>
+        {{#if msg}}
+        <p class="{{msg_type}}">{{msg}}</p>
+        {{/if}}
+
+         <div class="user_details">
+                <div class="contact_name">
+                <span style="color: black;">Name:</span>  {{contact.name}}
+                </div>
+                <div class="contact_number">
+                   <span style="color: black;">Number:</span>   {{contact.number}}
+                </div>
+            </div>
+    
+            <form action="/auth/editContact/{{contact._id}}" method="post">
+                <div class="data">
+                    <label for="name">Contact Name</label>
+                    <input type="text" name="edit_name" id="name">
+                </div>
+                <div class="data">
+                    <label for="number">Number</label>
+                    <input type="text" name="edit_number" 
+                    id="number">
+                </div>
+                <div class="btn">
+                    <button type="submit">Submit</button>
+                </div>
+                <div class="signup-link">
+                    Go to <a href="/contact">Contact Book</a>
+                </div>
+                
+            </form>
+        
+    </div>
+    
+</body>
+</html>

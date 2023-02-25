@@ -23,7 +23,7 @@ const isLoggedIn = asyncHandler(async(req,res,next) => {
             if(!dbuser) {
                 return next()
             }
-            req.result = dbuser;
+            req.user = dbuser;
             return next()         
 
         }catch(error){

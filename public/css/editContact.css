@@ -1,0 +1,17 @@
+
+.user_details{
+    width: 100%;
+    display: flexbox;
+    justify-content: space-around;
+    align-items: center;
+    /* border: 1px solid black; */
+    margin-top: 20px;
+    font-size: 13px;
+
+}
+
+.contact_number,
+.contact_name {
+    padding: 5px;
+    color: blueviolet;
+}
