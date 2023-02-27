@@ -14,3 +14,17 @@
 .img-upload input{
     cursor: pointer;
 }
+
+.reset_link{
+    display: flex;
+    justify-content: center;
+}
+
+.reset_link a{
+    text-decoration: none;
+    font-weight: 600;
+    color: rgb(87, 60, 112);
+}
+.reset_link a:hover{
+    text-decoration: underline;
+}

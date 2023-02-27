@@ -1,12 +1,9 @@
 const asyncHandler = require("express-async-handler")
-const bcrypt = require("bcryptjs");
 const User = require('../models/usermodel')
-const Contact = require('../models/contactmodel')
 const jwt = require('jsonwebtoken')
-const { promisify } = require('util')
-const fs= require('fs')
 const hbs = require('hbs')
-const path= require('path')
+const exceljs = require('exceljs')
+const fs = require('fs')
 
 exports.addContact =  asyncHandler(async(req,res,next) => {
     try {
@@ -106,5 +103,54 @@ exports.deleteContact = asyncHandler(async(req,res,next) => {
     }catch(err){
         console.log(err);
     }
+
+  })
+
+  exports.download =  asyncHandler(async(req,res,next) => {
+
+    const {userId} = req.params
+    const dbuser = await User.findOne({ _id:userId  });
+    const contacts = dbuser.contacts
+
+    try {
+        if (!contacts || contacts.length === 0) {
+            return res.status(404).json({ message: 'Contacts not found' });
+          }
+        
+          // create a new workbook and worksheet
+          const workbook = new exceljs.Workbook();
+          const worksheet = workbook.addWorksheet('Contacts');
+        
+          // define the columns
+          worksheet.columns = [
+            { header: 'Name', key: 'name', width: 25 },
+            { header: 'Phone Number', key: 'number', width: 25 },
+            // add more columns if necessary
+          ];
+        
+          // add the rows
+          contacts.forEach(contact => {
+            worksheet.addRow({
+              name: contact.name,
+              number: contact.number,
+              // add more fields if necessary
+            });
+          });
+        
+          // write the workbook to a buffer
+          const buffer = await workbook.xlsx.writeBuffer();
+        
+          // set the headers for the response
+          res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+          res.setHeader('Content-Disposition', 'attachment; filename=contacts.xlsx');
+        
+          // send the buffer as the response
+          res.send(buffer);
+    
+      } catch (err) {
+        console.log(err);
+      }
+
+
 
   })

@@ -12,7 +12,7 @@
 
     {{> navbar}}
     <div class="whole_container">
-         <div class="contact-container">
+        <div class="contact-container">
             <div class="heading">
                 <div class="contact">
                     Contact Details
@@ -25,13 +25,14 @@
                 <div class="user_name">
                     {{user.name}}
                 </div>
-                <div class="user_email">
+                <div class="user_email"> 
                     {{user.email}}
                 </div>
+                
             </div>
             <table>
                 <thead>
-                    <tr>
+                    <tr >
                         <th>No</th>
                         <th>Contact Name</th>
                         <th>Number</th>
@@ -50,11 +51,11 @@
                         <td>{{add @index 1}}</td>
                         <td>{{name}}</td>
                         <td>{{number}}</td>
-                        <th><a href="/editContact/{{_id}}">Edit</a></th>
+                        <th class="edit_btn_column"> <div class="edit_btn_box"><a class="edit_btn" href="/editContact/{{_id}}">Edit</a></div></th>
                         <th>
                             <form action="/auth/contacts/{{_id}}" method="POST">
                             <input type="hidden" name="_method" value="DELETE">
-                                <button type="submit">Delete</button>
+                                <button class="delete_btn" type="submit">Delete</button>
                             </form>
                         </th>
                     </tr>
@@ -63,6 +64,9 @@
                     
                 </tbody>
             </table>
+            <div class="export_btn">
+                    <a href="auth/download/{{user._id}}">Download</a>
+            </div>
             
     
         </div>

@@ -14,6 +14,7 @@ router.get("/register",(req,res)=> {
 })
 
 router.get("/forgot",(req,res)=> {
+    
     res.render("forgot")
 })
 
@@ -28,6 +29,14 @@ router.get("/profile",isLoggedIn, (req,res)=> {
 router.get("/edit",isLoggedIn,(req,res)=> {
     if (req.user){
         res.render("edit", {user: req.user})
+    }else {
+        res.redirect("/login")
+    }
+})
+
+router.get("/resetpass",isLoggedIn,(req,res)=> {
+    if (req.user){
+        res.render("resetPass", {user: req.user})
     }else {
         res.redirect("/login")
     }

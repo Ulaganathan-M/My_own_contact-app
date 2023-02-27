@@ -8,6 +8,7 @@ const connectDb = require('./config/mongoDB')
 const hbs = require('hbs')
 const errorHandler = require("./middleware/errorHandler")
 const cookieParser = require('cookie-parser')
+const nodemailer = require('nodemailer')
 
 
 

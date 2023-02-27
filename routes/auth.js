@@ -8,14 +8,25 @@ const isLoggedIn = require('../middleware/isLoggedin')
 
 
 
-router.post('/register',upload.single('avatar'), userController.register)
+//Without email Verfication
+router.post('/register', userController.register)
 router.post('/login', userController.login)
 router.get('/logout',userController.logout)
 router.post('/forgot',userController.forgot)
 router.post('/edit',upload.single('changed_avatar'),userController.edit)
+router.post('/reset-password/:userId',isLoggedIn,userController.resetPassword)
+
 router.post('/addContact',isLoggedIn,contactController.addContact)
 router.post('/contacts/:contactId',isLoggedIn,contactController.deleteContact)
 router.post('/editContact/:contactId',isLoggedIn,contactController.editContact)
+router.get('/download/:userId',contactController.download)
+
+//with Email verfication
+router.post('/email-activate/:token',userController.activateAccount)
+router.post('/forgot-activate/:token',userController.forgotActivate)
+router.post('/password-change/:token',userController.passwordChange)
+
+
 
 
 

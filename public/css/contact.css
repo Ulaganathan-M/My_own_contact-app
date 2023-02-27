@@ -15,6 +15,7 @@
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px
     -2px, rgba(0, 0, 0, 0.3) 0px 8px 7px -3px;
     padding: 10px;
+    padding-bottom: 30px;
 
 }
 .heading{
@@ -44,31 +45,98 @@
 }
 .add_contact a {
     text-decoration: none;
-    border: 1px solid black;
-    padding: 5px;
+    padding: 7px;
     background-color:  rgb(88, 51, 122);
     color: white;
+    border-radius: 3PX;
+    
 }
 .user_details {
     width: 100%;
     display: flex;
     justify-content: space-around;
     font-size: 20px;
-    font-weight: 700;
-    color: rgb(88, 51, 122);
+    font-weight: 500;
+    color: rgb(83, 24, 138);
     padding: 5px;
 }
+
 
 table{
     margin-top: 10px;
     border-collapse: collapse;
     width: 100%;
-    border: 1px solid black;
+    border: 3px solid ;
+    border-color: rgba(88, 50, 122, 0.5);
+    border-top: none;
 }
 th,td {
     text-align: center;
-    padding: 8px;
+    padding: 10px;
 }
-tbody tr:nth-child(odd) {
-    background-color: #f2f2f2;
+thead tr {
+    background-color:  rgb(88, 51, 122);
+    
+    color: white;
+    
+}
+thead tr th {
+    font-weight: 500;
+}
+tbody tr td {
+    font-weight: 500;
+}
+tbody tr:nth-child(even) {
+    background-color: #d8d6d6;
+}
+.delete_btn {
+    background: none;
+    border: none;
+    background-color:  rgb(88, 51, 122);
+    padding: 3px;
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    width: 50px;
+    border-radius: 3px;
+}
+.edit_btn_column{
+    display: flex;
+    justify-content: center;
+
+}
+.edit_btn_box{
+    display: flex;
+    width: 50px;
+}
+.edit_btn {
+    /* border: 1px solid black; */
+    
+    text-decoration: none;
+    background: none;
+    border: none;
+    background-color:  rgb(88, 51, 122);
+    padding: 3px;
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    width: 50px;
+    border-radius: 3px;
+}
+.export_btn{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.export_btn a{
+    
+    text-decoration: none;
+    font-weight: 600;
+    color: rgb(87, 60, 112);
+}
+.export_btn a:hover{
+    text-decoration: underline;
 }
