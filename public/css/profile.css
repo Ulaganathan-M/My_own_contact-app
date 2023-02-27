@@ -13,9 +13,32 @@
 .edit_profile a{
     
     text-decoration: none;
-    font-weight: 600;
-    color: rgb(87, 60, 112);
+    border: 1px solid rgb(87, 60, 112);
+    background-color:  rgb(87, 60, 112);
+    padding: 6px;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 3px;
 }
-.edit_profile a:hover{
-    text-decoration: underline;
+
+
+.delete_profile{
+    margin-top: 20px;  
 }
+
+.delete_profile a{
+    
+    text-decoration: none;
+    border: 1px solid rgb(255, 15, 15);
+    background-color:  red;
+    padding: 6px;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 3px;
+}
+
+

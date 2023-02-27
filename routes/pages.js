@@ -34,6 +34,14 @@ router.get("/edit",isLoggedIn,(req,res)=> {
     }
 })
 
+router.get("/delete",isLoggedIn,(req,res)=> {
+    if (req.user){
+        res.render("conformation", {user: req.user})
+    }else {
+        res.redirect("/login")
+    }
+})
+
 router.get("/resetpass",isLoggedIn,(req,res)=> {
     if (req.user){
         res.render("resetPass", {user: req.user})

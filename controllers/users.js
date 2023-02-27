@@ -418,4 +418,21 @@ exports.edit = asyncHandler(async(req,res,next) => {
 
     })
 
+    exports.delete =asyncHandler(async(req,res) => { 
+            console.log("delete");
+            const {userId} = req.params
+            const dbuser = await User.findOne({ _id:userId })
+            if(dbuser){
+                await User.deleteOne({ _id: userId});
+                return res.render('login',{msg:'Account Deleted Successfully',msg_type:"success"})
+ 
+            }
+            return res.render('login',{msg:'Error Try again!',msg_type:"error"})
+
+            
+            
+
+
+    })
+
     

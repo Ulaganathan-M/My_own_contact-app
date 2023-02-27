@@ -15,6 +15,8 @@ router.get('/logout',userController.logout)
 router.post('/forgot',userController.forgot)
 router.post('/edit',upload.single('changed_avatar'),userController.edit)
 router.post('/reset-password/:userId',isLoggedIn,userController.resetPassword)
+router.post('/delete/:userId',isLoggedIn,userController.delete)
+
 
 router.post('/addContact',isLoggedIn,contactController.addContact)
 router.post('/contacts/:contactId',isLoggedIn,contactController.deleteContact)

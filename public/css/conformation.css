@@ -1,0 +1,28 @@
+.conformation{
+
+    font-weight: 500;
+
+}
+
+.delete_line{
+    margin-top: 20px;
+    font-weight: 500;
+
+
+}
+
+.user_name{
+    color: red;
+}
+.delete_btn{
+    margin-top: 20px;
+    background: none;
+    border: none;
+    background-color:  red;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 3px;
+}

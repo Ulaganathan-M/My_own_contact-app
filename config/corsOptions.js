@@ -1,8 +1,8 @@
 
 
-corsOptions = {
-    origin: 'http://contactapp.render.com'
+const corsOptions = {
+    origin: 'http://contactappownme.onrender.com'
   };
 
-module.exports=corsOptions;
 
+  module.exports = corsOptions;
