@@ -9,6 +9,9 @@ const hbs = require('hbs')
 const errorHandler = require("./middleware/errorHandler")
 const cookieParser = require('cookie-parser')
 const nodemailer = require('nodemailer')
+const cors = require('cors');
+const corsOptions= require('./config/corsOptions')
+
 
 
 
@@ -18,6 +21,8 @@ const app = express();
 app.use(express.json());
 
 app.use(cookieParser())
+
+app.use(cors(corsOptions));
 
 app.use(express.urlencoded({extended:false}))  //it is importent to get req boy from browser
 
