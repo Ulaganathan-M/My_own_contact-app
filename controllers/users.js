@@ -332,20 +332,39 @@ exports.edit = asyncHandler(async(req,res,next) => {
             const dbuser = await User.findOne({ email:useremail })
 
             if(req.body.name && req.file){
+                const imageBuffer = fs.readFileSync(req.file.path);
+
+                // store the image buffer as binary data in MongoDB
+                await User.updateOne(
+                { email: useremail },
+                {
+                    name: req.body.name,
+                    avatar: {
+                    data: imageBuffer,
+                    contentType: req.file.mimetype,
+                    },
+                },
+                (err, result) => {
+                    if (err) {
+                    console.log(err);
+                    }
+                    return res.status(200).redirect("/profile");
+                }
+                );
                 
 
-                await User.updateOne({ email:useremail },{name:req.body.name, avatar:req.file.filename},(err,result) => {
-                    if(err){
-                        console.log(err);
-                    }
-                    filename=dbuser.avatar
-                    fs.unlink('public/uploads/'+filename,(err)=>{
-                        if(err){
-                            console.log(err);
-                        }
-                    })
-                    res.status(200).redirect("/profile")
-                })
+                // await User.updateOne({ email:useremail },{name:req.body.name, avatar:req.file.filename},(err,result) => {
+                //     if(err){
+                //         console.log(err);
+                //     }
+                //     filename=dbuser.avatar
+                //     fs.unlink('public/uploads/'+filename,(err)=>{
+                //         if(err){
+                //             console.log(err);
+                //         }
+                //     })
+                //     res.status(200).redirect("/profile")
+                // })
 
             }
 
@@ -359,21 +378,39 @@ exports.edit = asyncHandler(async(req,res,next) => {
                 })
             }
             else if(req.file){
-                
-                await User.updateOne({ email:useremail },{avatar: req.file.filename},(err,result) => {
+                const imageBuffer = fs.readFileSync(req.file.path);
 
-                    if(err){
-                        console.log(err);
+                // store the image buffer as binary data in MongoDB
+                await User.updateOne(
+                { email: useremail },
+                {
+                    avatar: {
+                    data: imageBuffer,
+                    contentType: req.file.mimetype,
+                    },
+                },
+                (err, result) => {
+                    if (err) {
+                    console.log(err);
                     }
-                    filename=dbuser.avatar
-                    fs.unlink('public/uploads/'+filename,(err)=>{
-                        if(err){
-                            console.log(err);
-                        }
-                    })
+                    return res.status(200).redirect("/profile");
+                }
+                );
+                
+                // await User.updateOne({ email:useremail },{avatar: req.file.filename},(err,result) => {
 
-                    res.status(200).redirect("/profile")
-                })
+                //     if(err){
+                //         console.log(err);
+                //     }
+                //     // filename=dbuser.avatar
+                //     // fs.unlink('public/uploads/'+filename,(err)=>{
+                //     //     if(err){
+                //     //         console.log(err);
+                //     //     }
+                //     // })
+
+                //     res.status(200).redirect("/profile")
+                // })
             }else{
                 return res.render('edit',{user: dbuser, msg:"Invalid Inputs", msg_type:"error"})
             }

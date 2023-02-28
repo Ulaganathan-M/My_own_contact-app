@@ -20,7 +20,14 @@ router.get("/forgot",(req,res)=> {
 
 router.get("/profile",isLoggedIn, (req,res)=> {
     if (req.user){
-        res.render("profile", {user: req.user})
+        let avatarImage = ''
+    if (req.user.avatar && req.user.avatar.data) {
+      const mimeType = req.user.avatar.contentType
+      const base64Data = req.user.avatar.data.toString('base64')
+      avatarImage = `data:${mimeType};base64,${base64Data}`
+    
+    }
+        res.render("profile", {user: req.user,avatarImage})
     }else {
         res.redirect("/login")
     }
@@ -28,7 +35,14 @@ router.get("/profile",isLoggedIn, (req,res)=> {
 })
 router.get("/edit",isLoggedIn,(req,res)=> {
     if (req.user){
-        res.render("edit", {user: req.user})
+        let avatarImage = ''
+        if (req.user.avatar && req.user.avatar.data) {
+          const mimeType = req.user.avatar.contentType
+          const base64Data = req.user.avatar.data.toString('base64')
+          avatarImage = `data:${mimeType};base64,${base64Data}`
+        
+        }
+        res.render("edit", {user: req.user,avatarImage})
     }else {
         res.redirect("/login")
     }

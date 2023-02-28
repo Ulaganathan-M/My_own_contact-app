@@ -22,8 +22,8 @@
                     <input type="text" name="name" id="name">
                 </div>
                 <div class="image">
-                    {{#if user.avatar}}
-                    <img src="/uploads/{{user.avatar}}" alt="urimage" width="150px" height="150px"/>
+                     {{#if avatarImage}}
+                    <img src="{{avatarImage}}" alt="urimage" width="150px" height="150px"/>
                     {{else}}
                     <img src="/image/userimage.png" alt="userimage" width="150px" height="150px" />
                     {{/if}}
