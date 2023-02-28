@@ -18,7 +18,8 @@ const userSchema = mongoose.Schema({
         required: [true, "Please add the user password"]
     },
     avatar: {
-        type: String
+        data: Buffer,
+        contentType: String
     },
     contacts: [contactSchema]
 }, {
