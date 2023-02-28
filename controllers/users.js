@@ -74,10 +74,11 @@ exports.register =asyncHandler(async(req,res) => {
             to: email,
             subject:'Account activation',
             html: `
+            <h1>Hi ${name}</h1>
             <h2>Click on given link to activate your Account</h2>
-            <form action="${process.env.CLIENT_URL}/auth/email-activate/${token}" method="POST">
+            <form action="${process.env.CLIENT_URL}/auth/email-activate/${token}" method="GET">
             <input type="hidden" name="_method" value="DELETE">
-            <button class="delete_btn" type="submit">click here</button>
+            <button type="submit">click here</button>
             </form>
             `
         }
@@ -237,12 +238,13 @@ exports.forgot =asyncHandler(async(req,res) => {
     const option = {
         from:'ulagaoffice@gmail.com',
         to: email,
-        subject:'Account activation',
+        subject:'Forgot Password',
         html: `
-        <h2>Click on given link to activate your Account</h2>
-        <form action="${process.env.CLIENT_URL}/auth/forgot-activate/${token}" method="POST">
+        <h1>Hi ${dbuser.name}</h1>
+        <h2>Click on below link to change your Password</h2>
+        <form action="${process.env.CLIENT_URL}/auth/forgot-activate/${token}" method="GET">
         <input type="hidden" name="_method" value="DELETE">
-        <button class="delete_btn" type="submit">click here</button>
+        <button type="submit">click here</button>
         </form>
         `
     }

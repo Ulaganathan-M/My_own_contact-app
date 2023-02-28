@@ -24,8 +24,8 @@ router.post('/editContact/:contactId',isLoggedIn,contactController.editContact)
 router.get('/download/:userId',contactController.download)
 
 //with Email verfication
-router.post('/email-activate/:token',userController.activateAccount)
-router.post('/forgot-activate/:token',userController.forgotActivate)
+router.get('/email-activate/:token',userController.activateAccount)
+router.get('/forgot-activate/:token',userController.forgotActivate)
 router.post('/password-change/:token',userController.passwordChange)
 
 
