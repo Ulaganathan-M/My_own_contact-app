@@ -78,8 +78,7 @@ exports.register =asyncHandler(async(req,res) => {
             <h2>Click on given link to activate your Account</h2>
             <form action="${process.env.CLIENT_URL}/auth/email-activate/${token}" method="GET">
             <input type="hidden" name="_method" value="DELETE">
-            <button type="submit">click here</button>
-            <a href="${process.env.CLIENT_URL}/auth/email-activate/${token}">Click here</a>
+            <button type="submit">Activate</button>
             </form>
             `
         }
