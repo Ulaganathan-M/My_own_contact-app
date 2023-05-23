@@ -65,7 +65,7 @@ router.get("/resetpass",isLoggedIn,(req,res)=> {
 })
 
 router.get("/home",isLoggedIn,(req,res) => {
-    
+
     if (req.user){
         res.render("home", {user: req.user})
     }else {

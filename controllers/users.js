@@ -427,51 +427,50 @@ exports.edit = asyncHandler(async(req,res,next) => {
     
     })
 
-    exports.resetPassword = asyncHandler(async(req,res) => {
+exports.resetPassword = asyncHandler(async(req,res) => {
 
-        const {userId} = req.params
-        const old_password = req.body.old_password.trim()
-        const new_password = req.body.new_password.trim()
-        const confirm_password = req.body.confirm_password.trim()
-        const dbuser = await User.findOne({ _id:userId })
+    const {userId} = req.params
+    const old_password = req.body.old_password.trim()
+    const new_password = req.body.new_password.trim()
+    const confirm_password = req.body.confirm_password.trim()
+    const dbuser = await User.findOne({ _id:userId })
 
-        if(!old_password || !new_password|| !confirm_password){
-            return res.render('resetPass',{user:dbuser, msg:"All fields are mandatory..", msg_type:"error"})
-        }
-        if(new_password !== confirm_password){
-            return res.render('resetPass',{user:dbuser, msg:"Password Not Matched..", msg_type:"error"})
+    if(!old_password || !new_password|| !confirm_password){
+        return res.render('resetPass',{user:dbuser, msg:"All fields are mandatory..", msg_type:"error"})
+    }
+    if(new_password !== confirm_password){
+        return res.render('resetPass',{user:dbuser, msg:"Password Not Matched..", msg_type:"error"})
+
+    }
+    if(dbuser && (await bcrypt.compare(old_password, dbuser.password))) {
+        const hashPassword = await bcrypt.hash(new_password, 10);
+        await User.updateOne({ email:dbuser.email },{password:hashPassword})
+        return res.render('resetPass',{user:dbuser, msg:'Password Changed Successfully..',msg_type:"success"})
+
+
+
+    }else{
+        return res.render('resetPass',{user:dbuser, msg:'Incorrect Password!',msg_type:"error"})
+
+    }
     
+
+})
+
+exports.delete =asyncHandler(async(req,res) => { 
+        console.log("delete");
+        const {userId} = req.params
+        const dbuser = await User.findOne({ _id:userId })
+        if(dbuser){
+            await User.deleteOne({ _id: userId});
+            return res.render('login',{msg:'Account Deleted Successfully',msg_type:"success"})
+
         }
-        if(dbuser && (await bcrypt.compare(old_password, dbuser.password))) {
-            const hashPassword = await bcrypt.hash(new_password, 10);
-            await User.updateOne({ email:dbuser.email },{password:hashPassword})
-            return res.render('resetPass',{user:dbuser, msg:'Password Changed Successfully..',msg_type:"success"})
+        return res.render('login',{msg:'Error Try again!',msg_type:"error"})
 
-
-
-        }else{
-            return res.render('resetPass',{user:dbuser, msg:'Incorrect Password!',msg_type:"error"})
-
-        }
+        
         
 
-    })
 
-    exports.delete =asyncHandler(async(req,res) => { 
-            console.log("delete");
-            const {userId} = req.params
-            const dbuser = await User.findOne({ _id:userId })
-            if(dbuser){
-                await User.deleteOne({ _id: userId});
-                return res.render('login',{msg:'Account Deleted Successfully',msg_type:"success"})
- 
-            }
-            return res.render('login',{msg:'Error Try again!',msg_type:"error"})
+})
 
-            
-            
-
-
-    })
-
-    
